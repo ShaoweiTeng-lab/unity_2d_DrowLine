@@ -6,16 +6,17 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class LineManager : MonoBehaviour
 {   
-
+    [Header("lineRender預置物")]
     public GameObject linePrefeb;
-    [SerializeField]
-     GameObject currentLine;
+
+    [Header("當前畫的lineRender")]
     [SerializeField]
     LineRenderer line_Render;
     [SerializeField]
+    [Header("當下畫的lineRender中的EdgeCollider2D")]
     EdgeCollider2D edgCollider;
     [SerializeField]
-    List<Vector2> fingerpointsPos;
+    List<Vector2> fingerpointsPos;//點擊的位置
     
 
     public Color m_Color;
@@ -46,14 +47,12 @@ public class LineManager : MonoBehaviour
     void CreateLIne()
     {
 
-        currentLine = Instantiate(linePrefeb, Vector3.zero, Quaternion.identity);
-        line_Render = currentLine.GetComponent<LineRenderer>();
-        edgCollider = currentLine.GetComponent<EdgeCollider2D>();
-        line_Render.material.color = m_Color;
-
-        fingerpointsPos.Clear();
+        GameObject _Line = Instantiate(linePrefeb, Vector3.zero, Quaternion.identity);
+        line_Render = _Line.GetComponent<LineRenderer>();
+        edgCollider = _Line.GetComponent<EdgeCollider2D>();
+        line_Render.material.color = m_Color;        
         fingerpointsPos.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        fingerpointsPos.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        fingerpointsPos.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));//要兩次因為 line_Render.SetPosition 是兩個座標 所以先放入兩個相同的不然 下一行outofRange
         line_Render.SetPosition(0, fingerpointsPos[0]);
         line_Render.SetPosition(1, fingerpointsPos[1]);
         edgCollider.points = fingerpointsPos.ToArray();
@@ -70,6 +69,7 @@ public class LineManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            fingerpointsPos.Clear();//假如List中有資料先清除
             CreateLIne();//先創第一點
         }
         if (Input.GetKey(KeyCode.Mouse0))

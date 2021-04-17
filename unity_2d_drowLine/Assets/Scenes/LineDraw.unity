@@ -1128,7 +1128,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Use Sump Jump
+  m_Text: Use Super Jump
 --- !u!222 &935828276
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1409,7 +1409,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linePrefeb: {fileID: 1991844359856787680, guid: e72a7e3beb9427947a07a02e04f9a03c,
     type: 3}
-  currentLine: {fileID: 0}
   line_Render: {fileID: 0}
   edgCollider: {fileID: 0}
   fingerpointsPos: []
