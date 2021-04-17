@@ -1388,6 +1388,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1564989612}
   - component: {fileID: 1564989611}
+  - component: {fileID: 1564989613}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1413,14 +1414,6 @@ MonoBehaviour:
   edgCollider: {fileID: 0}
   fingerpointsPos: []
   m_Color: {r: 0, g: 1, b: 1, a: 1}
-  playerRig: {fileID: 907876724}
-  checkUsegravity: {fileID: 1221802205}
-  checkUsePhysicsMaterial: {fileID: 1784950001}
-  m_PhysicsMaterial2D: {fileID: 6200000, guid: 53501f883ad451842a2a5846cdae28fb, type: 2}
-  ReturnScence: {fileID: 78721569}
-  PhysicsMaterialRange: 0
-  m_PhysicsMaterialRange: {fileID: 1811026963}
-  SendPhysicsMaterial_text: {fileID: 1794966274}
 --- !u!4 &1564989612
 Transform:
   m_ObjectHideFlags: 0
@@ -1435,6 +1428,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1564989613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564989610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb69975ede9a3e441a70e152eb64e799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  playerRig: {fileID: 907876724}
+  checkUsegravity: {fileID: 1221802205}
+  checkUsePhysicsMaterial: {fileID: 1784950001}
+  m_PhysicsMaterial2D: {fileID: 6200000, guid: 53501f883ad451842a2a5846cdae28fb, type: 2}
+  ReturnScence: {fileID: 78721569}
+  PhysicsMaterialRange: 0
+  m_PhysicsMaterialRange: {fileID: 1811026963}
+  SendPhysicsMaterial_text: {fileID: 1794966274}
 --- !u!1 &1610299626
 GameObject:
   m_ObjectHideFlags: 0
