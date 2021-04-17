@@ -37,35 +37,37 @@ public class LineManager : MonoBehaviour
     {
         GameLoop();
     }
-    void CreateLIne() {
+    void GameLoop()
+    {
+        LineRenderUpdate();
+        PhysicUpdate();
+    }
+    #region LinRenderDraw
+    void CreateLIne()
+    {
 
         currentLine = Instantiate(linePrefeb, Vector3.zero, Quaternion.identity);
         line_Render = currentLine.GetComponent<LineRenderer>();
         edgCollider = currentLine.GetComponent<EdgeCollider2D>();
-        line_Render.material.color=m_Color;
+        line_Render.material.color = m_Color;
 
         fingerpointsPos.Clear();
         fingerpointsPos.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         fingerpointsPos.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         line_Render.SetPosition(0, fingerpointsPos[0]);
         line_Render.SetPosition(1, fingerpointsPos[1]);
-        edgCollider.points= fingerpointsPos.ToArray();
+        edgCollider.points = fingerpointsPos.ToArray();
     }
-    void UpdateLine(Vector2 newFingerPos) {
+    void UpdateLine(Vector2 newFingerPos)
+    {
         fingerpointsPos.Add(newFingerPos);
         line_Render.positionCount++;
         line_Render.SetPosition(line_Render.positionCount - 1, newFingerPos);
         edgCollider.points = fingerpointsPos.ToArray();
 
     }
-    void ReturnOnclick() {
-        SceneManager.LoadScene("LineDraw");
-    }
-    void GameLoop() {
-        LineRenderUpdate();
-        PhysicUpdate();
-    }
-    void LineRenderUpdate() {
+    void LineRenderUpdate()
+    {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             CreateLIne();//先創第一點
@@ -78,7 +80,15 @@ public class LineManager : MonoBehaviour
         }
 
     }
-    void PhysicUpdate() {
+    #endregion
+
+    #region PhysicsMaterial
+    void ReturnOnclick()
+    {
+        SceneManager.LoadScene("LineDraw");
+    }
+    void PhysicUpdate()
+    {
         if (checkUsegravity.isOn)
             playerRig.simulated = true;
         else
@@ -87,10 +97,13 @@ public class LineManager : MonoBehaviour
             playerRig.sharedMaterial = m_PhysicsMaterial2D;
         else
             playerRig.sharedMaterial = null;
-            PhysicsMaterialRange = m_PhysicsMaterialRange.value *1.5f ;
-            SendPhysicsMaterial_text.text = string.Format("彈力指數: {0}",  PhysicsMaterialRange.ToString("0.0"));
-            m_PhysicsMaterial2D.bounciness = PhysicsMaterialRange;
+        PhysicsMaterialRange = m_PhysicsMaterialRange.value * 1.5f;
+        SendPhysicsMaterial_text.text = string.Format("彈力指數: {0}", PhysicsMaterialRange.ToString("0.0"));
+        m_PhysicsMaterial2D.bounciness = PhysicsMaterialRange;
 
 
     }
+    #endregion
+
+
 }
